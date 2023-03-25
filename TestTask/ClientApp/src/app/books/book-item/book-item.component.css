@@ -1,3 +1,5 @@
 .item:hover{
-  border: 3px solid red;
+  background-color: rgb(255,193,7);
+  transition: linear 0.2s;
 }
+
