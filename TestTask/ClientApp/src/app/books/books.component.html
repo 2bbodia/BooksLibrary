@@ -1,0 +1,47 @@
+<div class="container mt-3">
+  <div class="row">
+
+    <section class="col-3">
+        <h5 class="text-warning ml-3 mt-4 mb-4">Сортування</h5>
+      <select class="form-select mb-4"  [title]="'choose'" (change)="onSortSelected($event)" [(ngModel)]="selectedSortValue">
+        <option *ngFor="let sort of sortOptions"
+                [value]="sort.value">
+          {{sort.name}}
+        </option>
+      </select>
+      <h5 class="text-warning ml-3 mt-4 mb-4">Фільтрування</h5>
+      <div class=" form-group mb-3">
+        <input
+          class="form-control mb-4"
+          type="text"
+          [(ngModel)]="searchString"
+          (keyup)="onSearchChanged()"
+          placeholder="Пошук">
+        <input type="text"
+               placeholder="Оберіть проміжок"
+               class="form-control"
+               bsDaterangepicker
+               placement="right"
+               [(ngModel)]="dateRange"
+               [bsConfig]="{ ranges: defaultRanges }"
+               (bsValueChange)="onDateRangeChanged($event)">
+      </div>
+      <app-books-chart [books]="filteredBooks"></app-books-chart>
+    </section>
+
+    <section class="col-9">
+      <app-create-book-modal ></app-create-book-modal>
+      <button class="btn btn-outline-success ms-2 my-2" (click)="exportService.exportBooksToExcel(filteredBooks)">Експортувати в Excel</button>
+      <button class="btn btn-outline-success ms-2 my-2" (click)="exportService.exportBooksToPdf(filteredBooks)">Експортувати в Pdf</button>
+      <div class="row">
+        <div class="col-4 mb-4" *ngFor="let book of filteredBooks">
+          <app-book-item [book]="book"></app-book-item>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
+
+
+
+

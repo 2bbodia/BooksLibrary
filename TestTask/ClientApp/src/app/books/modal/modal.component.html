@@ -1,0 +1,35 @@
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">{{title}}</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="form" (ngSubmit)="onSubmitClick()">
+      <input type="text"
+             placeholder="Назва"
+             class="form-control mb-2"
+            [formControlName]="'name'">
+          <input type="text"
+                 placeholder="Дата публікації"
+                 class="form-control mb-2"
+                 bsDatepicker
+          [formControlName]="'publishingDate'">
+
+      <input type="text"
+             placeholder="Опис"
+             class="form-control mb-2"
+            [formControlName]="'description'">
+      <input type="text"
+             placeholder="Кількість сторінок"
+             class="form-control mb-2"
+            [formControlName]="'pagesCount'">
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark" (click)="onCancelClick()">Відмінити</button>
+        <button type="submit" class="btn btn-outline-dark">Зберегти</button>
+      </div>
+    </form>
+  </div>
+
+</ng-template>
+
+

@@ -1,0 +1,13 @@
+<div class = "card h-100 shadow-sm item" *ngIf="book" (click)="modal.openModal()">
+  <div class="card-body d-flex flex-column">
+      <h6 class="text-uppercase">Назва: {{book.name}}</h6>
+    <h6>Дата публікації: {{book.publishingDate | date:'longDate'}}</h6>
+    <h6>Кількість сторінок: {{book.pagesCount}}</h6>
+  </div>
+</div>
+<app-modal
+  #modal
+  [book]="book"
+  [title]="'Оновити книгу'"
+  (cancel)="modal.createForm()"
+  (submit)="onSubmit($event)"></app-modal>
